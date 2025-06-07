@@ -1,19 +1,7 @@
+/*       Name: array.c                                   */
+/*       Created on: Jun 6, 2025                         */
+/*                Author: rcespedes                      */
 /* ····················································· */
-/* :   █████████  ███████████  ██████████   █████ █████: */
-/* :  ███░░░░░███░░███░░░░░███░░███░░░░███ ░░███ ░░███ : */
-/* : ███     ░░░  ░███    ░███ ░███   ░░███ ░░███ ███  : */
-/* :░███          ░██████████  ░███    ░███  ░░█████   : */
-/* :░███          ░███░░░░░░   ░███    ░███   ███░███  : */
-/* :░░███     ███ ░███         ░███    ███   ███ ░░███ : */
-/* : ░░█████████  █████        ██████████   █████ █████: */
-/* :  ░░░░░░░░░  ░░░░░        ░░░░░░░░░░   ░░░░░ ░░░░░ : */
-/* ····················································· */
-/*
- * array.c
- *
- *  Created on: Jun 6, 2025
- *      Author: rcespedes
- */
 
 #include "array.h"
 #include <float.h>
@@ -21,36 +9,14 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-// interpolate a 1d array by a fractional or whole index*/
-// given (x1, y1) and (x2, y2), given x, find y
-// find y = y1 + (y2 - y1)((x - x1) / (x2 - x1))
 
-Status max_min(double *array, int size, double *result) {
+Status min_max(double *array, int size, double *result) {
 
-  /***************************************************************
-   * Function 	min_max.
-   * Description	Searches through a double array finding the
-   * 				minimum and maximum values contained in it.
-   *
-   * Parameters:
-   *
-   * array 		the array to search. must be 1d
-   * size			the array size
-   * result		memory to store the results. the result is a
-   * 				dim3 array where,
-   * 				[0] = min value
-   * 				[1] = min value index
-   * 				[2] = max value
-   * 				[3] = max value index
-   *
-   * Return		Status
-   *
-   **************************************************************/
-
-  double max = DBL_MIN;
+  
+  double max = DBL_MIN; 
+  double min = DBL_MAX; 
+  
   double max_index = -1.0;
-
-  double min = DBL_MAX;
   double min_index = -1.0;
 
   for (int i = 0; i < size; i++) {
@@ -76,7 +42,7 @@ Status rotate_1d(double *array, int size, int shift) {
 
   // find effective shift
 
-  int eff_shift = shift % size;
+  int eff_shift = shift % size; // Effective shift
 
   if (eff_shift < 0) {
     eff_shift += size;
@@ -112,11 +78,8 @@ Status rotate_1d(double *array, int size, int shift) {
   free(temp_arr);
   return STATUS_SUCCESS;
 }
-// INTERPOLATION
 
-// doubles
-Status interpolate_1d_double(double *array, int array_size, double index_d,
-                             double *result) {
+Status interpolate_1d_double(double *array, int array_size, double index_d, double *result) {
 
   if (array == NULL || result == NULL) {
     return STATUS_ERROR_INVALID_MEMORY;
@@ -140,9 +103,7 @@ Status interpolate_1d_double(double *array, int array_size, double index_d,
   }
 }
 
-// Returns 0 on success, -1 on error. Result is stored in *x_threshold.
-Status threshold_1d(double *array, double threshold, int array_size,
-                    int start_index, double *x_threshold) {
+Status threshold_1d(double *array, double threshold, int array_size, int start_index, double *x_threshold) {
 
   return STATUS_ERROR_GENERIC; // Or another appropriate error code
 }
